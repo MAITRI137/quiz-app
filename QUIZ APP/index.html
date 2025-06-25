@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="quiz-container">
+            <div id="quiz-header">
+                <h1 id="quiz-title">Create Your Quiz</h1>
+                <div id="quiz-info">
+                    <div class="info-item">
+                        <span class="info-icon">📝</span>
+                        <span class="info-text"><span id="question-count">0</span> Questions</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">⏱️</span>
+                        <span class="info-text"><span id="timer-status">Timer Disabled</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Landing Page -->
+            <div id="landing-page" class="quiz-container landing-page">
+                <h1>Welcome to Quiz App</h1>
+                <div class="landing-content">
+                    <button id="show-quiz-btn" class="btn primary-btn">Generate Quiz</button>
+                </div>
+            </div>
+
+            <!-- Quiz Questions Page -->
+            <div id="quiz-page" class="quiz-container hide">
+                <h1>Quiz Questions</h1>
+                <div class="admin-controls">
+                    <button id="add-question-btn" class="btn primary-btn">Add New Question</button>
+                    <button id="share-quiz-btn" class="btn">Share Quiz</button>
+                </div>
+                
+                <!-- Questions List -->
+                <div id="questions-list">
+                    <!-- Questions will be dynamically added here -->
+                </div>
+                
+                <!-- Share Quiz Modal -->
+                <div id="share-modal" class="modal hide">
+                    <div class="modal-content">
+                        <h2>Share Quiz</h2>
+                        <div class="form-group">
+                            <label for="quiz-title-input">Quiz Title:</label>
+                            <input type="text" id="quiz-title-input" required placeholder="Enter your quiz title">
+                        </div>
+                        <div class="form-group">
+                            <div class="timer-toggle">
+                                <input type="checkbox" id="enable-timer">
+                                <label for="enable-timer">Enable Time Limit</label>
+                            </div>
+                            <div id="timer-input-container" class="hide">
+                                <label for="quiz-timer">Quiz Timer (minutes):</label>
+                                <input type="number" id="quiz-timer" min="1" value="30">
+                            </div>
+                        </div>
+                        <div class="share-link-container hide">
+                            <p>Share this link:</p>
+                            <div class="share-link">
+                                <input type="text" id="share-link" readonly>
+                                <button id="copy-link" class="btn">Copy</button>
+                            </div>
+                        </div>
+                        <div class="modal-buttons">
+                            <button id="generate-link" class="btn primary-btn">Generate Link</button>
+                            <button class="btn cancel-btn" onclick="document.getElementById('share-modal').classList.add('hide')">Close</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add/Edit Question Form -->
+                <div id="question-form" class="hide">
+                    <h2 id="form-title">Add New Question</h2>
+                    <form id="manage-question-form">
+                        <input type="hidden" id="question-id">
+                        <div class="form-group">
+                            <label for="question-text">Question:</label>
+                            <input type="text" id="question-text" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Options:</label>
+                            <div id="options-container">
+                                <div class="option-row">
+                                    <input type="text" class="choice-input" placeholder="Option 1" required>
+                                    <button type="button" class="btn remove-option" disabled>×</button>
+                                </div>
+                                <div class="option-row">
+                                    <input type="text" class="choice-input" placeholder="Option 2" required>
+                                    <button type="button" class="btn remove-option" disabled>×</button>
+                                </div>
+                            </div>
+                            <button type="button" id="add-option" class="btn">Add Option</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="correct-answer">Correct Answer:</label>
+                            <select id="correct-answer" required>
+                                <option value="0">Option 1</option>
+                                <option value="1">Option 2</option>
+                            </select>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn">Save Question</button>
+                            <button type="button" class="btn cancel-btn" id="cancel-question">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="share-container" class="hide">
+                    <input type="text" id="share-link" readonly />
+                    <button onclick="copyToClipboard()">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
+
